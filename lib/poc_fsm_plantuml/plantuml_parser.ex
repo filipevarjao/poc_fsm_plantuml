@@ -21,6 +21,7 @@ defmodule PocFsmPlantuml.PlantumlParser do
     puml = input
     |> String.split("\n", trim: true)
     |> Enum.map(fn x -> String.split(x, " ") end)
+    |> Enum.map(fn i -> Enum.reject(i, fn x -> x == "" end) end)
 
     for i <- puml, i != [""], do: List.to_tuple(i)
   end
